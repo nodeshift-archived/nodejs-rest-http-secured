@@ -4,26 +4,25 @@ const supertest = require('supertest');
 const proxyquire = require('proxyquire');
 
 const MockedKC = function () {
-    return {
-      middleware: () => {
-        return (req, resp, next) => {
-          return next();
-        };
-      },
-      protect: () => {
-        return (req, resp, next) => {
-          return next();
-        };
-      }
-    };
+  return {
+    middleware: () => {
+      return (req, resp, next) => {
+        return next();
+      };
+    },
+    protect: () => {
+      return (req, resp, next) => {
+        return next();
+      };
+    }
   };
+};
 
-  const app = proxyquire('../app', {
-    'keycloak-connect': MockedKC
-  });
+const app = proxyquire('../app', {
+  'keycloak-connect': MockedKC
+});
 
 test('test out greeting route with no query param', (t) => {
-
   supertest(app)
     .get('/api/greeting')
     .expect('Content-Type', /json/)
