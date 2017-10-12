@@ -24,6 +24,8 @@
     "app.js",
     "public",
     "bin",
+    "keycloak.json",
+    "kc.json",
     "LICENSE"
   ],
   "bugs": {
@@ -40,7 +42,7 @@
     "eslint-plugin-promise": "~3.5.0",
     "eslint-plugin-react": "~7.4.0",
     "eslint-plugin-standard": "~3.0.1",
-    "nodeshift": "^0.8.1",
+    "nodeshift": "^0.9.0-0",
     "nsp": "~2.8.0",
     "nyc": "~11.2.1",
     "standard-version": "^4.2.0",
@@ -52,6 +54,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "debug": "^3.1.0",
-    "express": "^4.16.0"
+    "express": "^4.16.0",
+    "keycloak-connect": "^3.3.0-cr.2",
+    "kube-probe": "^0.1.2"
   }
 }

@@ -1,77 +1,93 @@
-<!--
-  ~
-  ~  Copyright 2016-2017 Red Hat, Inc, and individual contributors.
-  ~
-  ~  Licensed under the Apache License, Version 2.0 (the "License");
-  ~  you may not use this file except in compliance with the License.
-  ~  You may obtain a copy of the License at
-  ~
-  ~  http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~  Unless required by applicable law or agreed to in writing, software
-  ~  distributed under the License is distributed on an "AS IS" BASIS,
-  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~  See the License for the specific language governing permissions and
-  ~  limitations under the License.
-  ~
-  -->
-
+<!doctype html>
 <html>
-
 <head>
-
   <meta charset="utf-8">
-  <title>API Level 0 Mission - Node.js</title>
+  <link rel="stylesheet" href="https://unpkg.com/wingcss"/>
+  <title>Secured HTTP API</title>
+  <script type="application/javascript" src="keycloak.js"></script>
+  <script type="application/javascript">
+    function initSSO() {
+      // configure the SSO object
+      keycloak = Keycloak('/kc.json');
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      keycloak.init().success(function () {
+        // validate that init operation result
+        if (keycloak.authenticated) {
+          // update UI to show the current user
+          document.getElementById('user').innerText = keycloak.tokenParsed.preferred_username;
+          document.getElementById('curl').innerText = 'curl -H "Authorization: Bearer ' + keycloak.token + '" http://' + window.location.host + '/api/greeting';
+        } else {
+          // update UI to show the current user
+          document.getElementById('user').innerHTML = '<i>Unauthenticated</i>';
+          document.getElementById('curl').innerText = '';
+        }
+      }).error(function (err) {
+        alert(err);
+      });
+    }
 
+    function invokeAPI() {
+      var name = document.getElementById('name').value;
+      var nameParam = '';
+      if (!(name === null || name === undefined || name === '')) {
+        nameParam = '?name=' + encodeURIComponent(name);
+      }
+      // create a AJAX call
+      var req = new XMLHttpRequest();
+      var url = '//' + window.location.host + '/api/greeting' + nameParam;
+      // var url = '//' + window.location.host + '/api/greeting?name=' + encodeURIComponent(keycloak.username || 'World');
+
+      req.open('GET', url, true);
+      // add the required headers
+      req.setRequestHeader('Accept', 'application/json');
+      req.setRequestHeader('Authorization', 'Bearer ' + keycloak.token);
+      // handle the response
+      req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+          if (req.status >= 400) {
+            alert('Invocation failed!\n  cause: [' + req.status + '] ' + req.statusText);
+          } else if (req.status >= 200) {
+            document.getElementById('result').innerText = req.responseText;
+          }
+        }
+      };
+      req.send();
+      // avoid form submit
+      return false;
+    }
+  </script>
 </head>
-
-<body>
-
+<body onload="initSSO()">
 <div class="container">
+  <h3>Secure HTTP API</h3>
+  <div class="row">
+    <div class="right">
+      <button id="login" onclick="keycloak.login()" class='outline'>Login</button>
+      &nbsp;
+      <button id="logout" onclick="keycloak.logout()">Logout</button>
+    </div>
+  </div>
 
-  <div>
-    <h1>API Level 0 Mission - Node.js</h1>
-    <p class="lead">This Mission showcases a basic mapping of a business operation to a remote endpoint. By
-      taking this approach, clients leverage the HTTP protocol as a transport mechanism to call upon services.
-      Application engineers define their APIs using a broad interpretation of REST fundamentals, encouraging
-      freedom in design and quick prototyping.
-    </p>
+  <p>This booster showcases SSO for a basic endpoint.</p>
 
-    <h2>Using the greeting service</h2>
-
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="World">
-      </div>
-      <button id="invoke" type="submit" class="btn btn-success">Invoke</button>
+  <h3>Greeting service (as <span id="user"><i>Unauthenticated</i></span>):</h3>
+  <div class="row">
+    <form onsubmit="return invokeAPI()">
+      <input type="text" placeholder="What is your name?" id="name"/>
+      <input type="submit" value="Invoke"/>
     </form>
+  </div>
 
-    <h3>Result:</h3>
-    <pre><code id="greeting-result">Invoke the service to see the result.</code></pre>
+  <h3>Result:</h3>
+  <div class="row">
+    <div class="col-12">
+      <pre><code id="result" style="font-style: italic">Your API result...</code></pre>
+    </div>
+  </div>
+  <div class="row">
+    <label for="curl">Curl command for the command line:</label>
+    <textarea id="curl" style="font-style: italic" readonly></textarea>
   </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
-<script>
-    $(document).ready(() => {
-       $("#invoke").click((e) => {
-          const n = $("#name").val() || "World";
-          $.getJSON(`/api/greeting?name=${n}`, (res) => {
-              $("#greeting-result").html(JSON.stringify(res));
-          });
-          e.preventDefault();
-       });
-    });
-</script>
-
 </body>
-
 </html>

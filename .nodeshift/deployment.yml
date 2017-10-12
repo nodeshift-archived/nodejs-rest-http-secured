@@ -1,20 +1,37 @@
 apiVersion: v1
 kind: Deployment
 metadata:
-  name: nodejs-rest-http
+  name: nodejs-rest-http-secured
 spec:
   template:
     spec:
       containers:
-        - readinessProbe:
+        - env:
+          - name: SSO_AUTH_SERVER_URL
+            value: "{SSO_AUTH_SERVER_URL}"
+          - name: REALM
+            value: master
+          - name: REALM_PUBLIC_KEY
+            value: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoETnPmN55xBJjRzN/cs30OzJ9olkteLVNRjzdTxFOyRtS2ovDfzdhhO9XzUcTMbIsCOAZtSt8K+6yvBXypOSYvI75EUdypmkcK1KoptqY5KEBQ1KwhWuP7IWQ0fshUwD6jI1QWDfGxfM/h34FvEn/0tJ71xN2P8TI2YanwuDZgosdobx/PAvlGREBGuk4BgmexTOkAdnFxIUQcCkiEZ2C41uCrxiS4CEe5OX91aK9HKZV4ZJX6vnqMHmdDnsMdO+UFtxOBYZio+a1jP4W3d7J5fGeiOaXjQCOpivKnP2yU2DPdWmDMyVb67l8DRA+jh0OJFKZ5H2fNgE3II59vdsRwIDAQAB
+          - name: CLIENT_ID
+            value: secured-booster-endpoint
+          readinessProbe:
             httpGet:
-              path: /api/greeting
+              path: /api/health/readiness
               port: 8080
               scheme: HTTP
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
           livenessProbe:
             httpGet:
-              path: /api/greeting
+              path: /api/health/liveness
               port: 8080
               scheme: HTTP
+            failureThreshold: 2
             initialDelaySeconds: 60
-            periodSeconds: 30
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1

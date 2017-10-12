@@ -22,15 +22,33 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+const Keycloak = require('keycloak-connect');
+const kc = new Keycloak({});
+
+const probe = require('kube-probe');
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/greeting', (request, response) => {
+app.use(kc.middleware());
+
+// Load the Web UI's keycloak.json config file
+// Doing it like this since we need to update the SSO_AUTH_URL on the fly
+// normally this would just be in the public directory and be served like any other file
+const kcJSON = require('./kc.json');
+kcJSON['auth-server-url'] = process.env.SSO_AUTH_SERVER_URL;
+app.use('/kc.json', (request, response) => {
+  return response.send(kcJSON);
+});
+
+app.use('/api/greeting', kc.protect(), (request, response) => {
   const name = request.query ? request.query.name : undefined;
   response.send({content: `Hello, ${name || 'World'}`});
 });
+
+probe(app);
 
 module.exports = app;
