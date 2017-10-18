@@ -8,7 +8,7 @@ spec:
       containers:
         - env:
           - name: SSO_AUTH_SERVER_URL
-            value: "{SSO_AUTH_SERVER_URL}"
+            value: "${SSO_AUTH_SERVER_URL}"
           - name: REALM
             value: master
           - name: REALM_PUBLIC_KEY
