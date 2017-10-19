@@ -4,5 +4,17 @@
 Quickstart to expose a REST Greeting endpoint using Node.js&amp; Secured by Red Hat SSO
 
 
-## Checking out the Repository
-To properly clone this repository, use the --recursive option to clone so that the sso submodule is checked out fully:
+## SSO Server Setup
+
+This booster requires a Red Hat SSO Server to be running.  You can create one easily by using the `./openshiftio/service.sso.yaml` file by running:
+
+    oc create -f ./openshiftio/service.sso.yaml
+
+
+## deploying the Booster
+
+You will need to know the Auth URL from the SSO server that was deployed in the previous step.
+
+To deploy the booster, run:
+
+    npm run openshift -- -d SSO_AUTH_SERVER_URL=<auth url from sso server>
