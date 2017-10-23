@@ -6,9 +6,9 @@ Quickstart to expose a REST Greeting endpoint using Node.js&amp; Secured by Red 
 
 ## SSO Server Setup
 
-This booster requires a Red Hat SSO Server to be running.  You can create one easily by using the `./openshiftio/service.sso.yaml` file by running:
+This booster requires a Red Hat SSO Server to be running.  You can create one easily by using the `service.sso.yaml` file by running:
 
-    oc create -f ./openshiftio/service.sso.yaml
+    oc create -f service.sso.yaml
 
 
 ## deploying the Booster
