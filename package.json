@@ -13,6 +13,7 @@
     "dependencyCheck": "szero . --ci",
     "release": "standard-version",
     "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x",
+    "postinstall": "license-reporter report && license-reporter save --xml licenses.xml",
     "start": "PORT=8080 node ./bin/www"
   },
   "repository": {
@@ -26,7 +27,8 @@
     "bin",
     "keycloak.json",
     "kc.json",
-    "LICENSE"
+    "LICENSE",
+    "licenses"
   ],
   "bugs": {
     "url": "https://github.com/bucharest-gold/nodejs-rest-http-secured/issues"
