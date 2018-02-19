@@ -4,7 +4,7 @@
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
-    "test": "ava test/openshift-test.js && tape test/greeting-test.js | tap-spec ",
+    "test": "ava test/*.js",
     "lint": "eslint test/*.js app.js bin/*",
     "prepare": "nsp check",
     "coverage": "nyc npm test",
@@ -53,8 +53,7 @@
     "standard-version": "^4.3.0",
     "supertest": "^3.0.0",
     "szero": "^1.0.0",
-    "tap-spec": "~4.1.1",
-    "tape": "~4.8.0"
+    "tap-spec": "~4.1.1"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
