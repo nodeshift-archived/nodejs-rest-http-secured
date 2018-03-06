@@ -46,6 +46,10 @@ app.use('/kc.json', (request, response) => {
   return response.send(kcJSON);
 });
 
+kc.accessDenied = function(request, response){
+  response.status(401).send("Unauthorized");
+};
+
 app.use('/api/greeting', kc.protect('booster-admin'), (request, response) => {
   const name = request.query ? request.query.name : undefined;
   response.send({content: `Hello, ${name || 'World'}`});
