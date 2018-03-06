@@ -46,9 +46,11 @@ app.use('/kc.json', (request, response) => {
   return response.send(kcJSON);
 });
 
+let id = 1;
+
 app.use('/api/greeting', kc.protect('booster-admin'), (request, response) => {
   const name = request.query ? request.query.name : undefined;
-  response.send({content: `Hello, ${name || 'World'}`});
+  response.send({id: id++, content: `Hello, ${name || 'World!'}`});
 });
 
 probe(app);

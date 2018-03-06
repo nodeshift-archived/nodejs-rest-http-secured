@@ -28,7 +28,8 @@ test('test out greeting route with no query param', (t) => {
     .expect('Content-Type', /json/)
     .expect(200)
     .then(response => {
-      t.equal(response.body.content, 'Hello, World');
+      t.ok(response.body.id, 'there is an id prop');
+      t.equal(response.body.content, 'Hello, World!');
       t.end();
     }).catch((err) => {
       console.log(err);
@@ -42,6 +43,7 @@ test('test out greeting route with a query param', (t) => {
     .expect('Content-Type', /json/)
     .expect(200)
     .then(response => {
+      t.ok(response.body.id, 'there is an id prop');
       t.equal(response.body.content, 'Hello, Luke');
       t.end();
     });
