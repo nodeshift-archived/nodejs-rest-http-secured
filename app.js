@@ -18,29 +18,28 @@
  *
  */
 
-const express = require('express');
 const path = require('path');
+const express = require('express');
 const bodyParser = require('body-parser');
-
-const Keycloak = require('keycloak-connect');
-const kc = new Keycloak({});
-
 const probe = require('kube-probe');
-
-const app = express();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-// expose the license.html at http[s]://[host]:[port]/licences/licenses.html
-app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
-
-app.use(kc.middleware());
-
+const Keycloak = require('keycloak-connect');
 // Load the Web UI's keycloak.json config file
 // Doing it like this since we need to update the SSO_AUTH_URL on the fly
 // normally this would just be in the public directory and be served like any other file
 const kcJSON = require('./kc.json');
+
+const kc = new Keycloak({});
+
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
+// Expose the license.html at http[s]://[host]:[port]/licences/licenses.html
+app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
+
+app.use(kc.middleware());
+
 kcJSON['auth-server-url'] = process.env.SSO_AUTH_SERVER_URL;
 app.use('/kc.json', (request, response) => {
   return response.send(kcJSON);
