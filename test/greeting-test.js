@@ -22,7 +22,7 @@ const app = proxyquire('../app', {
   'keycloak-connect': MockedKC
 });
 
-test('test out greeting route with no query param', (t) => {
+test('test out greeting route with no query param', t => {
   supertest(app)
     .get('/api/greeting')
     .expect('Content-Type', /json/)
@@ -31,13 +31,13 @@ test('test out greeting route with no query param', (t) => {
       t.ok(response.body.id, 'there is an id prop');
       t.equal(response.body.content, 'Hello, World!');
       t.end();
-    }).catch((err) => {
+    }).catch(err => {
       console.log(err);
       t.end();
     });
 });
 
-test('test out greeting route with a query param', (t) => {
+test('test out greeting route with a query param', t => {
   supertest(app)
     .get('/api/greeting?name=Luke')
     .expect('Content-Type', /json/)
