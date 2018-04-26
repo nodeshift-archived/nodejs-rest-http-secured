@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/bucharest-gold/nodejs-rest-http-secured/compare/v1.1.2...v1.1.3) (2018-04-26)
+
+
+### Bug Fixes
+
+* use the main prop for the application entry point. ([6f8e62b](https://github.com/bucharest-gold/nodejs-rest-http-secured/commit/6f8e62b)), closes [bucharest-gold/centos7-s2i-nodejs#33](https://github.com/bucharest-gold/centos7-s2i-nodejs/issues/33) [#issuecomment-382587104](https://github.com/bucharest-gold/nodejs-rest-http-secured/issues/issuecomment-382587104) [#69](https://github.com/bucharest-gold/nodejs-rest-http-secured/issues/69)
+* **www:** debug should take the project name as a parameter ([afc0ed1](https://github.com/bucharest-gold/nodejs-rest-http-secured/commit/afc0ed1))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/bucharest-gold/nodejs-rest-http-secured/compare/v1.1.1...v1.1.2) (2018-04-16)
 
