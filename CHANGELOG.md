@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/bucharest-gold/nodejs-rest-http-secured/compare/v1.1.3...v1.1.4) (2018-04-27)
+
+
+### Bug Fixes
+
+* add back the package-lock.json ([9e105db](https://github.com/bucharest-gold/nodejs-rest-http-secured/commit/9e105db))
+
+
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/bucharest-gold/nodejs-rest-http-secured/compare/v1.1.2...v1.1.3) (2018-04-26)
 
