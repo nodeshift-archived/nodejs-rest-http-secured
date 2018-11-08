@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/nodeshift-starters/nodejs-rest-http-secured/compare/v1.1.4...v1.2.0) (2018-11-08)
+
+
+### Bug Fixes
+
+* 8.x branch should use node 8.x ([8cedcda](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/8cedcda))
+* travis-ci should use npm install instead of npm ci ([276fbd8](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/276fbd8))
+
+
+### Features
+
+* start using node.js 10. ([40f1256](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/40f1256)), closes [#72](https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues/72)
+
+
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://github.com/nodeshift-starters/nodejs-rest-http-secured/compare/v1.1.3...v1.1.4) (2018-04-27)
 
