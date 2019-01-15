@@ -6,8 +6,6 @@
   "scripts": {
     "test": "tape test/*.js | tap-spec",
     "lint": "xo",
-    "prepare": "echo 'To confirm CVE compliance, run \"npm run security-check\"' ",
-    "security-check": "nsp check",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "ci": "npm run lint && npm run coveralls",
