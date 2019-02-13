@@ -31,8 +31,8 @@ test('test out greeting route with no query param', t => {
       t.ok(response.body.id, 'there is an id prop');
       t.equal(response.body.content, 'Hello, World!');
       t.end();
-    }).catch(err => {
-      console.log(err);
+    }).catch(error => {
+      console.log(error);
       t.end();
     });
 });
