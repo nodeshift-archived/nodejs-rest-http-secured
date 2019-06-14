@@ -6,7 +6,7 @@
     <dependencies>
         <dependency>
             <packageName>express</packageName>
-            <version>4.16.4</version>
+            <version>4.17.1</version>
             <licenses>
                 <license>
                     <name>MIT License</name>
@@ -16,7 +16,7 @@
         </dependency>
         <dependency>
             <packageName>keycloak-connect</packageName>
-            <version>5.0.0</version>
+            <version>6.0.1</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>
