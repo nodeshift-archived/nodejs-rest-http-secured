@@ -33,7 +33,7 @@ const kc = new Keycloak({});
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 // Expose the license.html at http[s]://[host]:[port]/licences/licenses.html
 app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
@@ -49,7 +49,7 @@ let id = 1;
 
 app.use('/api/greeting', kc.protect('booster-admin'), (request, response) => {
   const name = request.query ? request.query.name : undefined;
-  response.send({id: id++, content: `Hello, ${name || 'World!'}`});
+  response.send({ id: id++, content: `Hello, ${name || 'World!'}` });
 });
 
 probe(app);
