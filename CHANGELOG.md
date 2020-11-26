@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/nodeshift-starters/nodejs-rest-http-secured/compare/v3.0.2...v4.0.0) (2020-11-26)
+
+
+### Features
+
+* upgrade tape from 4.13.2 to 5.0.1 ([#138](https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues/138)) ([c8344b5](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/c8344b5e9a3455d145024c32b0e969c74c003abb))
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#133](https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues/133)) ([3bf0182](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/3bf01828220fb70ab4171cd30dec2905104edf89))
+* package.json & package-lock.json to reduce vulnerabilities ([#135](https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues/135)) ([e98c6cd](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/e98c6cddb82ed443cd7e8bf02a9d1383219363b8))
+* upgrade coveralls from 3.0.9 to 3.0.11 ([#130](https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues/130)) ([3c7b9b1](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/3c7b9b1b5b5aa71f21f5114d329907816c14a33a))
+* upgrade debug from 4.1.1 to 4.2.0 ([#132](https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues/132)) ([11f2381](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/11f238114b6b570186b460980b0d3b7b23f6430c))
+* upgrade kube-probe from 0.4.0 to 0.5.0 ([#141](https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues/141)) ([1b441af](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/1b441afc4a4308f4197317845aa55630af28ae5f))
+* upgrade nodeshift from 6.0.2 to 6.2.0 ([#140](https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues/140)) ([db4e446](https://github.com/nodeshift-starters/nodejs-rest-http-secured/commit/db4e4465c963bf5a70c7a967566bb273196b4b1b))
+
 ### [3.0.2](https://github.com/nodeshift-starters/nodejs-rest-http-secured/compare/v3.0.1...v3.0.2) (2020-04-27)
 
 ### [3.0.1](https://github.com/nodeshift-starters/nodejs-rest-http-secured/compare/v3.0.0...v3.0.1) (2019-11-27)
