@@ -1,5 +1,6 @@
 {
   "extends": "semistandard",
+  "ignorePatterns": ["public/**/*.js"],
   "rules": {
     "prefer-const": "error",
     "block-scoped-var": "error",
