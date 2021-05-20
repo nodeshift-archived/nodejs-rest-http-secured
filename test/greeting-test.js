@@ -1,4 +1,5 @@
-const test = require('tape');
+/* eslint-disable no-undef */
+const assert = require('assert');
 const supertest = require('supertest');
 
 const proxyquire = require('proxyquire');
@@ -22,29 +23,24 @@ const app = proxyquire('../app', {
   'keycloak-connect': MockedKC
 });
 
-test('test out greeting route with no query param', t => {
-  supertest(app)
-    .get('/api/greeting')
-    .expect('Content-Type', /json/)
-    .expect(200)
-    .then(response => {
-      t.ok(response.body.id, 'there is an id prop');
-      t.equal(response.body.content, 'Hello, World!');
-      t.end();
-    }).catch(error => {
-      console.log(error);
-      t.end();
-    });
-});
+describe('Greeting route', () => {
+  it('with no query param', async () => {
+    const { body } = await supertest(app)
+      .get('/api/greeting')
+      .expect('Content-Type', /json/)
+      .expect(200);
 
-test('test out greeting route with a query param', t => {
-  supertest(app)
-    .get('/api/greeting?name=Luke')
-    .expect('Content-Type', /json/)
-    .expect(200)
-    .then(response => {
-      t.ok(response.body.id, 'there is an id prop');
-      t.equal(response.body.content, 'Hello, Luke');
-      t.end();
-    });
+    assert.ok(body.id);
+    assert.strictEqual(body.content, 'Hello, World!');
+  });
+
+  it('with a query param', async () => {
+    const { body } = await supertest(app)
+      .get('/api/greeting?name=Luke')
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+    assert.ok(body.id);
+    assert.strictEqual(body.content, 'Hello, Luke');
+  });
 });
