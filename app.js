@@ -21,7 +21,6 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const probe = require('kube-probe');
 const Keycloak = require('keycloak-connect');
 // Load the Web UI's keycloak.json config file
 // Doing it like this since we need to update the SSO_AUTH_URL on the fly
@@ -52,6 +51,13 @@ app.use('/api/greeting', kc.protect('booster-admin'), (request, response) => {
   response.send({ id: id++, content: `Hello, ${name || 'World!'}` });
 });
 
-probe(app);
+// Add basic health check endpoints
+app.use('/ready', (request, response) => {
+  return response.sendStatus(200);
+});
+
+app.use('/live', (request, response) => {
+  return response.sendStatus(200);
+});
 
 module.exports = app;
