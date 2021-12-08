@@ -13,8 +13,7 @@
   "main": "./bin/www",
   "standard-version": {
     "scripts": {
-      "postbump": "npm run postinstall",
-      "precommit": "git add licenses/"
+      "postbump": "npm run postinstall"
     }
   },
   "repository": {
