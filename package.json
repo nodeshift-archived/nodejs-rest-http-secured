@@ -8,7 +8,6 @@
     "test": "nyc --reporter=lcov mocha",
     "release": "standard-version -a",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14",
-    "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
     "start": "node ."
   },
   "main": "./bin/www",
@@ -29,8 +28,7 @@
     "bin",
     "keycloak.json",
     "kc.json",
-    "LICENSE",
-    "licenses"
+    "LICENSE"
   ],
   "bugs": {
     "url": "https://github.com/nodeshift-starters/nodejs-rest-http-secured/issues"
@@ -39,10 +37,6 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-semistandard": "^16.0.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
     "mocha": "^9.1.2",
     "nodeshift": "~8.6.0",
     "nyc": "~15.1.0",
@@ -55,9 +49,8 @@
     "debug": "^4.3.2",
     "express": "~4.17.1",
     "keycloak-connect": "^15.0.2",
-    "license-reporter": "~1.4.0",
-    "pino": "^6.13.2",
+    "pino": "^7.5.1",
     "pino-debug": "^2.0.0",
-    "pino-pretty": "^6.0.0"
+    "pino-pretty": "^7.2.0"
   }
 }
