@@ -11,11 +11,6 @@
     "start": "node ."
   },
   "main": "./bin/www",
-  "standard-version": {
-    "scripts": {
-      "postbump": "npm run postinstall"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/nodeshift-starters/nodejs-rest-http-secured.git"
